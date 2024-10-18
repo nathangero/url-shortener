@@ -1,7 +1,6 @@
 "use strict";
 import express, { Request, Response } from "express";
 import cors from "cors";
-// const routes = require("./api");
 
 const PORT = 3001;
 const app = express();
@@ -9,8 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(routes);
 
+// Testing
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript server!');
 });
@@ -20,6 +19,7 @@ const debugRedirect: { [key: string]: string } = {
   "aHR0cHM6": "https://www.youtube.com/"
 }
 
+// Check the db if the shortened url exists
 app.post("/:slug", async (req: Request, res: Response) => {
   const slug = req.params.slug;
   console.log("slug:", slug);
@@ -32,7 +32,7 @@ app.post("/:slug", async (req: Request, res: Response) => {
   }
 });
 
-
+// Didn't get a chance to complete
 app.post("/newSlug", async (req: Request, res: Response) => {
   const slug = req.params.slug;
 

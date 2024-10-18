@@ -3,6 +3,10 @@ import UrlForm from "./components/UrlForm"
 
 function App() {
 
+  fetch("http://localhost:3001")
+    .then(res => res.text())
+    .then(res => console.log(res))
+
   const debugRedirect: { [key: string]: string } = {
     "aHR0cHM6": "https://www.youtube.com/"
   }

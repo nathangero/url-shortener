@@ -15,6 +15,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 const db: { [key: string]: string } = {};
+
+// testing redirect to make sure it works
 const debugRedirect: { [key: string]: string } = {
   "aHR0cHM6": "https://www.youtube.com/"
 }
@@ -24,15 +26,16 @@ app.post("/:slug", async (req: Request, res: Response) => {
   const slug = req.params.slug;
   console.log("slug:", slug);
 
-  if (debugRedirect[slug]) {
-    console.log("redirecting user to:", debugRedirect[slug]);
-    res.send(debugRedirect[slug]);
+  if (db[slug]) {
+    console.log("redirecting user to:", db[slug]);
+    res.send(db[slug]);
   } else {
     res.sendStatus(404);
   }
 });
 
 // Didn't get a chance to complete
+// Idea was to convert the url to base64, take the first 8 characters, save it as a key in the dictionary and its value pair is the original url.
 app.post("/newSlug", async (req: Request, res: Response) => {
   const slug = req.params.slug;
 

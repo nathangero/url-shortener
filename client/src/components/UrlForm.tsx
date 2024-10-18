@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from "react"
 
 export default function UrlForm() {
 
+  const BASE_URL = "http://localhost:8080/";
   const [url, setUrl] = useState<string>('');
   const [urlShortened, setUrlShortened] = useState<string>('');
 
@@ -15,7 +16,8 @@ export default function UrlForm() {
     event.preventDefault();
     event.stopPropagation();
 
-
+    const slug = btoa(url).slice(0, 8); // take only the first 8 characters
+    setUrlShortened(BASE_URL + slug);
   }
 
   return (
@@ -27,7 +29,7 @@ export default function UrlForm() {
 
           className="border-solid border-2 border-black w-64" required
           name="userName"
-          // type="url"
+          type="url"
           value={url}
           onChange={onChangeUrl}
         />
